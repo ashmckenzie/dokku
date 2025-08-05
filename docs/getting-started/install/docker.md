@@ -14,6 +14,8 @@ docker container run -d \
   --env DOKKU_HOST_ROOT=/var/lib/dokku/home/dokku \
   --env DOKKU_LIB_HOST_ROOT=/var/lib/dokku/var/lib/dokku \
   --name dokku \
+  --privileged \
+  --pid host \
   --publish 3022:22 \
   --publish 8080:80 \
   --publish 8443:443 \
@@ -30,6 +32,8 @@ services:
     image: dokku/dokku:0.36.0
     container_name: dokku
     network_mode: bridge
+    privileged: true
+    pid: host
     ports:
       - "3022:22"
       - "8080:80"
